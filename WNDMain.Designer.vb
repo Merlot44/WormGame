@@ -22,6 +22,7 @@ Partial Class WNDMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(WNDMain))
         Box1 = New PictureBox()
         Box2 = New PictureBox()
@@ -146,6 +147,8 @@ Partial Class WNDMain
         AvancéToolStripMenuItem = New ToolStripMenuItem()
         AideToolStripMenuItem = New ToolStripMenuItem()
         InstructionsToolStripMenuItem = New ToolStripMenuItem()
+        TMRTime = New Timer(components)
+        TMRGame = New Timer(components)
         CType(Box1, ComponentModel.ISupportInitialize).BeginInit()
         CType(Box2, ComponentModel.ISupportInitialize).BeginInit()
         CType(Box3, ComponentModel.ISupportInitialize).BeginInit()
@@ -1592,6 +1595,14 @@ Partial Class WNDMain
         InstructionsToolStripMenuItem.Size = New Size(136, 22)
         InstructionsToolStripMenuItem.Text = "Instructions"
         ' 
+        ' TMRTime
+        ' 
+        TMRTime.Interval = 1000
+        ' 
+        ' TMRGame
+        ' 
+        TMRGame.Interval = 200
+        ' 
         ' WNDMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -1599,6 +1610,7 @@ Partial Class WNDMain
         BackgroundImage = My.Resources.Resources.Empty
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(540, 563)
+        Controls.Add(LBLArrows)
         Controls.Add(LBLPoints)
         Controls.Add(PBXPoints)
         Controls.Add(PBXSound)
@@ -1612,7 +1624,6 @@ Partial Class WNDMain
         Controls.Add(LBLInstructionsIntro)
         Controls.Add(LBLWelcome)
         Controls.Add(LBLTime)
-        Controls.Add(LBLArrows)
         Controls.Add(Box74)
         Controls.Add(Box91)
         Controls.Add(Box92)
@@ -1718,6 +1729,7 @@ Partial Class WNDMain
         DoubleBuffered = True
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
+        KeyPreview = True
         MaximizeBox = False
         Name = "WNDMain"
         Text = "Jeu de ver"
@@ -1953,5 +1965,7 @@ Partial Class WNDMain
     Friend WithEvents AvancéToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AideToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents InstructionsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TMRTime As Timer
+    Friend WithEvents TMRGame As Timer
 
 End Class

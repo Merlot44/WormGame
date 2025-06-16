@@ -11,12 +11,27 @@
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    Public OrangeBoxes() As Boolean = {
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+    Public WormHistory As Integer() = {43, 44, 45}
     Public Sound As Boolean = True
     Public Time As Integer = 0
     Public Points As Integer = 0
     Public Direction As String = “Right”
+    Public OldDirection As String = “Right”
     Public Mode As String = "Normal"
     Public ActiveBox As Integer = 45
+    Public ActiveOrange As Integer = 47
+    Public FirstGame As Boolean = True
     Private Sub PBXSound_MouseHover(sender As Object, e As EventArgs) Handles PBXSound.MouseHover
         ' Check the Sound variable
         Select Case Sound
@@ -42,6 +57,8 @@
         End Select
     End Sub
     Private Sub WNDMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ' Randomize Rnd() function
+        Randomize()
         ' Iterate through every box number in the WelcomeWormBoxes array
         For Box As Integer = 0 To (WelcomeWormBoxes.Length() - 1)
             ' Check if it's less than the last box of the array
@@ -124,28 +141,219 @@
         PBXAdvanced.Visible = False
         ' Change the Mode variable to "Normal"
         Mode = "Normal"
-        ' Show new controls
-        PBXPoints.Visible = True
-        LBLPoints.Visible = True
-        LBLTime.Visible = True
         ' Change background image to the game background
         BackgroundImage = My.Resources.Play
         ' Iterate through every box number in the WormBoxes array
         For Box As Integer = 1 To WormBoxes.Length()
             ' Check the status of the box
-            If (Box - 1) = ActiveBox Then
+            If Box = ActiveBox Then
                 ' Change the colour of the box to green
                 Me.Controls("Box" & CStr(Box)).BackColor = Color.FromArgb(147, 196, 125)
+                ' Change the background image of the box to the right-facing worm face
                 Me.Controls("Box" & CStr(Box)).BackgroundImage = My.Resources.Face_Right
             ElseIf WormBoxes(Box - 1) = False Then
                 ' Change the colour of the box to green
                 Me.Controls("Box" & CStr(Box)).BackColor = Color.FromArgb(147, 196, 125)
+                ' Remove the background image of the box
                 Me.Controls("Box" & CStr(Box)).BackgroundImage = Nothing
             ElseIf WormBoxes(Box - 1) = True Then
+                ' Change the colour of the box to brown
                 Me.Controls("Box" & CStr(Box)).BackColor = Color.FromArgb(185, 105, 0)
+                ' Remove the background image of the box
                 Me.Controls("Box" & CStr(Box)).BackgroundImage = Nothing
             End If
+            ' Show the box
             Me.Controls("Box" & CStr(Box)).Visible = True
         Next
+        ' Change the colour of the box to green
+        Me.Controls("Box" & CStr(ActiveOrange)).BackColor = Color.FromArgb(147, 196, 125)
+        ' Change the background image of the active orange box to an orange
+        Me.Controls("Box" & CStr(ActiveOrange)).BackgroundImage = My.Resources.Orange
+        ' Choose another box for the next orange
+        ActiveOrange = Fix(Rnd() * 100)
+        ' Make sure the active orange box isn't on the worm or a pre-existing orange
+        While OrangeBoxes(ActiveOrange - 1) = True Or WormBoxes(ActiveOrange - 1) = True
+            ' Choose another box for the next orange
+            ActiveOrange = Fix(Rnd() * 100)
+        End While
+        ' Change the status of the active orange box in the OrangeBoxes array
+        OrangeBoxes(ActiveOrange) = True
+        ' Change the colour of the box to green
+        Me.Controls("Box" & CStr(ActiveOrange)).BackColor = Color.FromArgb(147, 196, 125)
+        ' Change the background image of the active orange box to an orange
+        Me.Controls("Box" & CStr(ActiveOrange)).BackgroundImage = My.Resources.Orange
+        ' Choose another box for the next orange
+        ActiveOrange = Fix(Rnd() * 100)
+        ' Make sure the active orange box isn't on the worm or a pre-existing orange
+        While OrangeBoxes(ActiveOrange) = True Or WormBoxes(ActiveOrange) = True
+            ' Choose another box for the next orange
+            ActiveOrange = Fix(Rnd() * 100)
+        End While
+        ' Change the status of the active orange box in the OrangeBoxes array
+        OrangeBoxes(ActiveOrange) = True
+        ' Change the colour of the box to green
+        Me.Controls("Box" & CStr(ActiveOrange)).BackColor = Color.FromArgb(147, 196, 125)
+        ' Change the background image of the active orange box to an orange
+        Me.Controls("Box" & CStr(ActiveOrange)).BackgroundImage = My.Resources.Orange
+        ' Show new controls
+        PBXPoints.Visible = True
+        LBLPoints.Visible = True
+        LBLTime.Visible = True
+        LBLArrows.Visible = True
+    End Sub
+
+    Private Sub BTNAdvanced_Click(sender As Object, e As EventArgs) Handles BTNAdvanced.Click
+        ' Hide unused controls
+        LBLSelectMode.Visible = False
+        BTNNormal.Visible = False
+        BTNAdvanced.Visible = False
+        PBXNormal.Visible = False
+        PBXAdvanced.Visible = False
+        ' Change the Mode variable to "Advanced"
+        Mode = "Advanced"
+        ' Change background image to the game background
+        BackgroundImage = My.Resources.Play
+        ' Iterate through every box number in the WormBoxes array
+        For Box As Integer = 1 To WormBoxes.Length()
+            ' Check the status of the box
+            If Box = ActiveBox Then
+                ' Change the colour of the box to green
+                Me.Controls("Box" & CStr(Box)).BackColor = Color.FromArgb(147, 196, 125)
+                ' Change the background image of the box to the right-facing worm face
+                Me.Controls("Box" & CStr(Box)).BackgroundImage = My.Resources.Face_Right
+            ElseIf WormBoxes(Box - 1) = False Then
+                ' Change the colour of the box to green
+                Me.Controls("Box" & CStr(Box)).BackColor = Color.FromArgb(147, 196, 125)
+                ' Remove the background image of the box
+                Me.Controls("Box" & CStr(Box)).BackgroundImage = Nothing
+            ElseIf WormBoxes(Box - 1) = True Then
+                ' Change the colour of the box to brown
+                Me.Controls("Box" & CStr(Box)).BackColor = Color.FromArgb(185, 105, 0)
+                ' Remove the background image of the box
+                Me.Controls("Box" & CStr(Box)).BackgroundImage = Nothing
+            End If
+            ' Show the box
+            Me.Controls("Box" & CStr(Box)).Visible = True
+        Next
+        ' Change the colour of the box to green
+        Me.Controls("Box" & CStr(ActiveOrange)).BackColor = Color.FromArgb(147, 196, 125)
+        ' Change the background image of the active orange box to an orange
+        Me.Controls("Box" & CStr(ActiveOrange)).BackgroundImage = My.Resources.Orange
+        ' Show new controls
+        PBXPoints.Visible = True
+        LBLPoints.Visible = True
+        LBLTime.Visible = True
+        LBLArrows.Visible = True
+    End Sub
+    Private Sub WNDMain_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        ' Check what key got pressed
+        Select Case e.KeyValue
+            Case Keys.Up
+                ' Check if it's the first game
+                If FirstGame = True Then
+                    ' Hide unused controls
+                    LBLArrows.Visible = False
+                    ' Enable the timers
+                    TMRTime.Enabled = True
+                    TMRGame.Enabled = True
+                End If
+                ' Set the old direction to the current direction
+                OldDirection = Direction
+                ' Set the current direction to the new direction
+                Direction = "Up"
+            Case Keys.Right
+                ' Check if it's the first game
+                If FirstGame = True Then
+                    ' Hide unused controls
+                    LBLArrows.Visible = False
+                    ' Enable the timers
+                    TMRTime.Enabled = True
+                    TMRGame.Enabled = True
+                End If
+                ' Set the old direction to the current direction
+                OldDirection = Direction
+                ' Set the current direction to the new direction
+                Direction = "Right"
+            Case Keys.Down
+                ' Check if it's the first game
+                If FirstGame = True Then
+                    ' Hide unused controls
+                    LBLArrows.Visible = False
+                    ' Enable the timers
+                    TMRTime.Enabled = True
+                    TMRGame.Enabled = True
+                End If
+                ' Set the old direction to the current direction
+                OldDirection = Direction
+                ' Set the current direction to the new direction
+                Direction = "Down"
+            Case Keys.Left
+                ' Check if it's the first game
+                If FirstGame = True Then
+                    ' Hide unused controls
+                    LBLArrows.Visible = False
+                    ' Enable the timers
+                    TMRTime.Enabled = True
+                    TMRGame.Enabled = True
+                End If
+                ' Set the old direction to the current direction
+                OldDirection = Direction
+                ' Set the current direction to the new direction
+                Direction = "Left"
+        End Select
+    End Sub
+    Private Sub TMRGame_Tick(sender As Object, e As EventArgs) Handles TMRGame.Tick
+        ' Check the direction
+        If Direction = "Up" And Not (OldDirection = "Down") Then
+            ' Check if the box is inside the play area
+            If (ActiveBox - 10) > 0 Then
+                ' Check if the box is used by the worm
+                If WormBoxes(ActiveBox - 10) = False Then
+                    ' Change the status of the new box
+                    WormBoxes(ActiveBox - 10) = True
+                    ' Check if the worm caught an orange
+                    If OrangeBoxes(ActiveBox = 10) = False Then
+                        ' Change the colour of the first box of the WormHistory array to green
+                        Me.Controls("Box" & CStr(WormHistory(0))).BackColor = Color.FromArgb(147, 196, 125)
+                        ' Set the status of the WormBoxes array
+                        WormBoxes(WormHistory(0)) = False
+                        ' Shift the WormHistory array by one box to the left
+                        For Box As Integer = 0 To (WormHistory.Length() - 2)
+                            WormHistory(Box) = WormHistory(Box + 1)
+                        Next
+                        ' Change the last box of the WormHistory array to the new box
+                        WormHistory(WormHistory.Length() - 1) = (ActiveBox - 10)
+                    Else
+                        ' Choose another box for the next orange
+                        ActiveOrange = Fix(Rnd() * 100)
+                        ' Make sure the active orange box isn't on the worm or a pre-existing orange
+                        While OrangeBoxes(ActiveOrange - 1) = True Or WormBoxes(ActiveOrange - 1) = True
+                            ' Choose another box for the next orange
+                            ActiveOrange = Fix(Rnd() * 100)
+                        End While
+                        ' Change the status of the active orange box in the OrangeBoxes array
+                        OrangeBoxes(ActiveOrange) = True
+                        ' Change the colour of the box to green
+                        Me.Controls("Box" & CStr(ActiveOrange)).BackColor = Color.FromArgb(147, 196, 125)
+                        ' Change the background image of the active orange box to an orange
+                        Me.Controls("Box" & CStr(ActiveOrange)).BackgroundImage = My.Resources.Orange
+                        ' Add the new box to the WormHistory array
+                        WormHistory(WormHistory.Length()) = (ActiveBox - 10)
+                    End If
+                    ' Change the back colour of the active box to brown
+                    Me.Controls("Box" & CStr(ActiveBox)).BackColor = Color.FromArgb(185, 105, 0)
+                    ' Remove the background image of the active box
+                    Me.Controls("Box" & CStr(ActiveBox)).BackgroundImage = Nothing
+                    ' Change the backround image of the new box to the up-facing worm face
+                    Me.Controls("Box" & CStr(ActiveBox - 10)).BackgroundImage = My.Resources.Face_Up
+                    ' Change ActiveBox to the new box
+                    ActiveBox = (ActiveBox - 10)
+                Else
+                    '-----------------------Game Over-----------------------
+                End If
+            Else
+                '-----------------------Game Over-----------------------
+            End If
+        End If
     End Sub
 End Class
