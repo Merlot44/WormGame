@@ -130,11 +130,11 @@ Partial Class WNDMain
         LBLInstructionsIntro = New Label()
         LBLInstructions = New Label()
         LBLSelectMode = New Label()
-        BTNNormal = New Button()
-        BTNAdvanced = New Button()
+        BTNEasy = New Button()
+        BTNHard = New Button()
         PBXSound = New PictureBox()
-        PBXNormal = New PictureBox()
-        PBXAdvanced = New PictureBox()
+        PBXEasy = New PictureBox()
+        PBXHard = New PictureBox()
         LBLArrows = New Label()
         PBXPoints = New PictureBox()
         LBLPoints = New Label()
@@ -143,12 +143,14 @@ Partial Class WNDMain
         FichierToolStripMenuItem = New ToolStripMenuItem()
         QuitterToolStripMenuItem = New ToolStripMenuItem()
         JouerToolStripMenuItem = New ToolStripMenuItem()
-        NormalToolStripMenuItem = New ToolStripMenuItem()
-        AvancéToolStripMenuItem = New ToolStripMenuItem()
         AideToolStripMenuItem = New ToolStripMenuItem()
         InstructionsToolStripMenuItem = New ToolStripMenuItem()
         TMRTime = New Timer(components)
         TMRGame = New Timer(components)
+        LBLGameOver = New Label()
+        BTNRestart = New Button()
+        FacileToolStripMenuItem = New ToolStripMenuItem()
+        DifficileToolStripMenuItem = New ToolStripMenuItem()
         CType(Box1, ComponentModel.ISupportInitialize).BeginInit()
         CType(Box2, ComponentModel.ISupportInitialize).BeginInit()
         CType(Box3, ComponentModel.ISupportInitialize).BeginInit()
@@ -250,8 +252,8 @@ Partial Class WNDMain
         CType(Box99, ComponentModel.ISupportInitialize).BeginInit()
         CType(Box100, ComponentModel.ISupportInitialize).BeginInit()
         CType(PBXSound, ComponentModel.ISupportInitialize).BeginInit()
-        CType(PBXNormal, ComponentModel.ISupportInitialize).BeginInit()
-        CType(PBXAdvanced, ComponentModel.ISupportInitialize).BeginInit()
+        CType(PBXEasy, ComponentModel.ISupportInitialize).BeginInit()
+        CType(PBXHard, ComponentModel.ISupportInitialize).BeginInit()
         CType(PBXPoints, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
@@ -1431,27 +1433,27 @@ Partial Class WNDMain
         LBLSelectMode.TextAlign = ContentAlignment.MiddleCenter
         LBLSelectMode.Visible = False
         ' 
-        ' BTNNormal
+        ' BTNEasy
         ' 
-        BTNNormal.Font = New Font("Comic Sans MS", 30F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        BTNNormal.Location = New Point(75, 250)
-        BTNNormal.Name = "BTNNormal"
-        BTNNormal.Size = New Size(188, 66)
-        BTNNormal.TabIndex = 107
-        BTNNormal.Text = "Normal"
-        BTNNormal.UseVisualStyleBackColor = True
-        BTNNormal.Visible = False
+        BTNEasy.Font = New Font("Comic Sans MS", 30F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BTNEasy.Location = New Point(75, 250)
+        BTNEasy.Name = "BTNEasy"
+        BTNEasy.Size = New Size(188, 66)
+        BTNEasy.TabIndex = 107
+        BTNEasy.Text = "Facile"
+        BTNEasy.UseVisualStyleBackColor = True
+        BTNEasy.Visible = False
         ' 
-        ' BTNAdvanced
+        ' BTNHard
         ' 
-        BTNAdvanced.Font = New Font("Comic Sans MS", 30F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        BTNAdvanced.Location = New Point(75, 400)
-        BTNAdvanced.Name = "BTNAdvanced"
-        BTNAdvanced.Size = New Size(188, 66)
-        BTNAdvanced.TabIndex = 108
-        BTNAdvanced.Text = "Avancé"
-        BTNAdvanced.UseVisualStyleBackColor = True
-        BTNAdvanced.Visible = False
+        BTNHard.Font = New Font("Comic Sans MS", 30F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BTNHard.Location = New Point(75, 400)
+        BTNHard.Name = "BTNHard"
+        BTNHard.Size = New Size(188, 66)
+        BTNHard.TabIndex = 108
+        BTNHard.Text = "Difficile"
+        BTNHard.UseVisualStyleBackColor = True
+        BTNHard.Visible = False
         ' 
         ' PBXSound
         ' 
@@ -1464,29 +1466,29 @@ Partial Class WNDMain
         PBXSound.TabIndex = 109
         PBXSound.TabStop = False
         ' 
-        ' PBXNormal
+        ' PBXEasy
         ' 
-        PBXNormal.BackColor = Color.Transparent
-        PBXNormal.BackgroundImage = My.Resources.Resources.Orange
-        PBXNormal.BackgroundImageLayout = ImageLayout.Zoom
-        PBXNormal.Location = New Point(350, 250)
-        PBXNormal.Name = "PBXNormal"
-        PBXNormal.Size = New Size(66, 66)
-        PBXNormal.TabIndex = 110
-        PBXNormal.TabStop = False
-        PBXNormal.Visible = False
+        PBXEasy.BackColor = Color.Transparent
+        PBXEasy.BackgroundImage = My.Resources.Resources.Oranges
+        PBXEasy.BackgroundImageLayout = ImageLayout.Zoom
+        PBXEasy.Location = New Point(350, 250)
+        PBXEasy.Name = "PBXEasy"
+        PBXEasy.Size = New Size(66, 66)
+        PBXEasy.TabIndex = 110
+        PBXEasy.TabStop = False
+        PBXEasy.Visible = False
         ' 
-        ' PBXAdvanced
+        ' PBXHard
         ' 
-        PBXAdvanced.BackColor = Color.Transparent
-        PBXAdvanced.BackgroundImage = My.Resources.Resources.Oranges
-        PBXAdvanced.BackgroundImageLayout = ImageLayout.Zoom
-        PBXAdvanced.Location = New Point(350, 400)
-        PBXAdvanced.Name = "PBXAdvanced"
-        PBXAdvanced.Size = New Size(66, 66)
-        PBXAdvanced.TabIndex = 111
-        PBXAdvanced.TabStop = False
-        PBXAdvanced.Visible = False
+        PBXHard.BackColor = Color.Transparent
+        PBXHard.BackgroundImage = My.Resources.Resources.Orange
+        PBXHard.BackgroundImageLayout = ImageLayout.Zoom
+        PBXHard.Location = New Point(350, 400)
+        PBXHard.Name = "PBXHard"
+        PBXHard.Size = New Size(66, 66)
+        PBXHard.TabIndex = 111
+        PBXHard.TabStop = False
+        PBXHard.Visible = False
         ' 
         ' LBLArrows
         ' 
@@ -1565,22 +1567,10 @@ Partial Class WNDMain
         ' 
         ' JouerToolStripMenuItem
         ' 
-        JouerToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {NormalToolStripMenuItem, AvancéToolStripMenuItem})
+        JouerToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {FacileToolStripMenuItem, DifficileToolStripMenuItem})
         JouerToolStripMenuItem.Name = "JouerToolStripMenuItem"
         JouerToolStripMenuItem.Size = New Size(47, 20)
         JouerToolStripMenuItem.Text = "Jouer"
-        ' 
-        ' NormalToolStripMenuItem
-        ' 
-        NormalToolStripMenuItem.Name = "NormalToolStripMenuItem"
-        NormalToolStripMenuItem.Size = New Size(114, 22)
-        NormalToolStripMenuItem.Text = "Normal"
-        ' 
-        ' AvancéToolStripMenuItem
-        ' 
-        AvancéToolStripMenuItem.Name = "AvancéToolStripMenuItem"
-        AvancéToolStripMenuItem.Size = New Size(114, 22)
-        AvancéToolStripMenuItem.Text = "Avancé"
         ' 
         ' AideToolStripMenuItem
         ' 
@@ -1603,6 +1593,43 @@ Partial Class WNDMain
         ' 
         TMRGame.Interval = 200
         ' 
+        ' LBLGameOver
+        ' 
+        LBLGameOver.AutoSize = True
+        LBLGameOver.BackColor = Color.Transparent
+        LBLGameOver.Font = New Font("Comic Sans MS", 30F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        LBLGameOver.ForeColor = SystemColors.Control
+        LBLGameOver.Location = New Point(103, 300)
+        LBLGameOver.Name = "LBLGameOver"
+        LBLGameOver.Size = New Size(335, 56)
+        LBLGameOver.TabIndex = 118
+        LBLGameOver.Text = "Vous avez perdu!"
+        LBLGameOver.Visible = False
+        ' 
+        ' BTNRestart
+        ' 
+        BTNRestart.AutoSize = True
+        BTNRestart.Font = New Font("Comic Sans MS", 30F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        BTNRestart.Location = New Point(137, 435)
+        BTNRestart.Name = "BTNRestart"
+        BTNRestart.Size = New Size(291, 66)
+        BTNRestart.TabIndex = 119
+        BTNRestart.Text = "Recommencer"
+        BTNRestart.UseVisualStyleBackColor = True
+        BTNRestart.Visible = False
+        ' 
+        ' FacileToolStripMenuItem
+        ' 
+        FacileToolStripMenuItem.Name = "FacileToolStripMenuItem"
+        FacileToolStripMenuItem.Size = New Size(180, 22)
+        FacileToolStripMenuItem.Text = "Facile"
+        ' 
+        ' DifficileToolStripMenuItem
+        ' 
+        DifficileToolStripMenuItem.Name = "DifficileToolStripMenuItem"
+        DifficileToolStripMenuItem.Size = New Size(180, 22)
+        DifficileToolStripMenuItem.Text = "Difficile"
+        ' 
         ' WNDMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -1610,17 +1637,19 @@ Partial Class WNDMain
         BackgroundImage = My.Resources.Resources.Empty
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(540, 563)
+        Controls.Add(BTNRestart)
+        Controls.Add(LBLGameOver)
+        Controls.Add(BTNHard)
         Controls.Add(LBLArrows)
         Controls.Add(LBLPoints)
         Controls.Add(PBXPoints)
         Controls.Add(PBXSound)
         Controls.Add(MenuStrip1)
-        Controls.Add(BTNNormal)
+        Controls.Add(BTNEasy)
         Controls.Add(BTNStart)
-        Controls.Add(PBXNormal)
-        Controls.Add(BTNAdvanced)
+        Controls.Add(PBXEasy)
         Controls.Add(BTNInstructions)
-        Controls.Add(PBXAdvanced)
+        Controls.Add(PBXHard)
         Controls.Add(LBLInstructionsIntro)
         Controls.Add(LBLWelcome)
         Controls.Add(LBLTime)
@@ -1834,8 +1863,8 @@ Partial Class WNDMain
         CType(Box99, ComponentModel.ISupportInitialize).EndInit()
         CType(Box100, ComponentModel.ISupportInitialize).EndInit()
         CType(PBXSound, ComponentModel.ISupportInitialize).EndInit()
-        CType(PBXNormal, ComponentModel.ISupportInitialize).EndInit()
-        CType(PBXAdvanced, ComponentModel.ISupportInitialize).EndInit()
+        CType(PBXEasy, ComponentModel.ISupportInitialize).EndInit()
+        CType(PBXHard, ComponentModel.ISupportInitialize).EndInit()
         CType(PBXPoints, ComponentModel.ISupportInitialize).EndInit()
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
@@ -1948,11 +1977,11 @@ Partial Class WNDMain
     Friend WithEvents LBLInstructionsIntro As Label
     Friend WithEvents LBLInstructions As Label
     Friend WithEvents LBLSelectMode As Label
-    Friend WithEvents BTNNormal As Button
-    Friend WithEvents BTNAdvanced As Button
+    Friend WithEvents BTNEasy As Button
+    Friend WithEvents BTNHard As Button
     Friend WithEvents PBXSound As PictureBox
-    Friend WithEvents PBXNormal As PictureBox
-    Friend WithEvents PBXAdvanced As PictureBox
+    Friend WithEvents PBXEasy As PictureBox
+    Friend WithEvents PBXHard As PictureBox
     Friend WithEvents LBLArrows As Label
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents PBXPoints As PictureBox
@@ -1961,11 +1990,13 @@ Partial Class WNDMain
     Friend WithEvents FichierToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents QuitterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents JouerToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents NormalToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AvancéToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AideToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents InstructionsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TMRTime As Timer
     Friend WithEvents TMRGame As Timer
+    Friend WithEvents LBLGameOver As Label
+    Friend WithEvents BTNRestart As Button
+    Friend WithEvents FacileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DifficileToolStripMenuItem As ToolStripMenuItem
 
 End Class
