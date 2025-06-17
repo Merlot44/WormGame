@@ -143,14 +143,20 @@ Partial Class WNDMain
         FichierToolStripMenuItem = New ToolStripMenuItem()
         QuitterToolStripMenuItem = New ToolStripMenuItem()
         JouerToolStripMenuItem = New ToolStripMenuItem()
+        FacileToolStripMenuItem = New ToolStripMenuItem()
+        DifficileToolStripMenuItem = New ToolStripMenuItem()
         AideToolStripMenuItem = New ToolStripMenuItem()
         InstructionsToolStripMenuItem = New ToolStripMenuItem()
+        DétailsToolStripMenuItem = New ToolStripMenuItem()
+        CréateurMerlot44ToolStripMenuItem1 = New ToolStripMenuItem()
+        Version100ToolStripMenuItem1 = New ToolStripMenuItem()
+        DatedeRelâche17Juin2025ToolStripMenuItem1 = New ToolStripMenuItem()
         TMRTime = New Timer(components)
         TMRGame = New Timer(components)
         LBLGameOver = New Label()
         BTNRestart = New Button()
-        FacileToolStripMenuItem = New ToolStripMenuItem()
-        DifficileToolStripMenuItem = New ToolStripMenuItem()
+        LBLLevel2 = New Label()
+        LBLLevel3 = New Label()
         CType(Box1, ComponentModel.ISupportInitialize).BeginInit()
         CType(Box2, ComponentModel.ISupportInitialize).BeginInit()
         CType(Box3, ComponentModel.ISupportInitialize).BeginInit()
@@ -1572,9 +1578,21 @@ Partial Class WNDMain
         JouerToolStripMenuItem.Size = New Size(47, 20)
         JouerToolStripMenuItem.Text = "Jouer"
         ' 
+        ' FacileToolStripMenuItem
+        ' 
+        FacileToolStripMenuItem.Name = "FacileToolStripMenuItem"
+        FacileToolStripMenuItem.Size = New Size(114, 22)
+        FacileToolStripMenuItem.Text = "Facile"
+        ' 
+        ' DifficileToolStripMenuItem
+        ' 
+        DifficileToolStripMenuItem.Name = "DifficileToolStripMenuItem"
+        DifficileToolStripMenuItem.Size = New Size(114, 22)
+        DifficileToolStripMenuItem.Text = "Difficile"
+        ' 
         ' AideToolStripMenuItem
         ' 
-        AideToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {InstructionsToolStripMenuItem})
+        AideToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {InstructionsToolStripMenuItem, DétailsToolStripMenuItem})
         AideToolStripMenuItem.Name = "AideToolStripMenuItem"
         AideToolStripMenuItem.Size = New Size(43, 20)
         AideToolStripMenuItem.Text = "Aide"
@@ -1582,8 +1600,36 @@ Partial Class WNDMain
         ' InstructionsToolStripMenuItem
         ' 
         InstructionsToolStripMenuItem.Name = "InstructionsToolStripMenuItem"
-        InstructionsToolStripMenuItem.Size = New Size(136, 22)
+        InstructionsToolStripMenuItem.Size = New Size(180, 22)
         InstructionsToolStripMenuItem.Text = "Instructions"
+        ' 
+        ' DétailsToolStripMenuItem
+        ' 
+        DétailsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {CréateurMerlot44ToolStripMenuItem1, Version100ToolStripMenuItem1, DatedeRelâche17Juin2025ToolStripMenuItem1})
+        DétailsToolStripMenuItem.Name = "DétailsToolStripMenuItem"
+        DétailsToolStripMenuItem.Size = New Size(180, 22)
+        DétailsToolStripMenuItem.Text = "Détails"
+        ' 
+        ' CréateurMerlot44ToolStripMenuItem1
+        ' 
+        CréateurMerlot44ToolStripMenuItem1.Enabled = False
+        CréateurMerlot44ToolStripMenuItem1.Name = "CréateurMerlot44ToolStripMenuItem1"
+        CréateurMerlot44ToolStripMenuItem1.Size = New Size(221, 22)
+        CréateurMerlot44ToolStripMenuItem1.Text = "Créateur: Merlot44"
+        ' 
+        ' Version100ToolStripMenuItem1
+        ' 
+        Version100ToolStripMenuItem1.Enabled = False
+        Version100ToolStripMenuItem1.Name = "Version100ToolStripMenuItem1"
+        Version100ToolStripMenuItem1.Size = New Size(221, 22)
+        Version100ToolStripMenuItem1.Text = "Version: 1.0.0"
+        ' 
+        ' DatedeRelâche17Juin2025ToolStripMenuItem1
+        ' 
+        DatedeRelâche17Juin2025ToolStripMenuItem1.Enabled = False
+        DatedeRelâche17Juin2025ToolStripMenuItem1.Name = "DatedeRelâche17Juin2025ToolStripMenuItem1"
+        DatedeRelâche17Juin2025ToolStripMenuItem1.Size = New Size(221, 22)
+        DatedeRelâche17Juin2025ToolStripMenuItem1.Text = "Datede relâche: 17 Juin 2025"
         ' 
         ' TMRTime
         ' 
@@ -1591,7 +1637,7 @@ Partial Class WNDMain
         ' 
         ' TMRGame
         ' 
-        TMRGame.Interval = 200
+        TMRGame.Interval = 270
         ' 
         ' LBLGameOver
         ' 
@@ -1618,17 +1664,31 @@ Partial Class WNDMain
         BTNRestart.UseVisualStyleBackColor = True
         BTNRestart.Visible = False
         ' 
-        ' FacileToolStripMenuItem
+        ' LBLLevel2
         ' 
-        FacileToolStripMenuItem.Name = "FacileToolStripMenuItem"
-        FacileToolStripMenuItem.Size = New Size(180, 22)
-        FacileToolStripMenuItem.Text = "Facile"
+        LBLLevel2.AutoSize = True
+        LBLLevel2.BackColor = Color.Transparent
+        LBLLevel2.Font = New Font("Comic Sans MS", 40F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        LBLLevel2.ForeColor = SystemColors.Control
+        LBLLevel2.Location = New Point(145, 275)
+        LBLLevel2.Name = "LBLLevel2"
+        LBLLevel2.Size = New Size(251, 76)
+        LBLLevel2.TabIndex = 120
+        LBLLevel2.Text = "Niveau 2"
+        LBLLevel2.Visible = False
         ' 
-        ' DifficileToolStripMenuItem
+        ' LBLLevel3
         ' 
-        DifficileToolStripMenuItem.Name = "DifficileToolStripMenuItem"
-        DifficileToolStripMenuItem.Size = New Size(180, 22)
-        DifficileToolStripMenuItem.Text = "Difficile"
+        LBLLevel3.AutoSize = True
+        LBLLevel3.BackColor = Color.Transparent
+        LBLLevel3.Font = New Font("Comic Sans MS", 40F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        LBLLevel3.ForeColor = SystemColors.Control
+        LBLLevel3.Location = New Point(145, 275)
+        LBLLevel3.Name = "LBLLevel3"
+        LBLLevel3.Size = New Size(251, 76)
+        LBLLevel3.TabIndex = 121
+        LBLLevel3.Text = "Niveau 3"
+        LBLLevel3.Visible = False
         ' 
         ' WNDMain
         ' 
@@ -1637,6 +1697,8 @@ Partial Class WNDMain
         BackgroundImage = My.Resources.Resources.Empty
         BackgroundImageLayout = ImageLayout.Center
         ClientSize = New Size(540, 563)
+        Controls.Add(LBLLevel3)
+        Controls.Add(LBLLevel2)
         Controls.Add(BTNRestart)
         Controls.Add(LBLGameOver)
         Controls.Add(BTNHard)
@@ -1998,5 +2060,11 @@ Partial Class WNDMain
     Friend WithEvents BTNRestart As Button
     Friend WithEvents FacileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DifficileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LBLLevel2 As Label
+    Friend WithEvents LBLLevel3 As Label
+    Friend WithEvents DétailsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CréateurMerlot44ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents Version100ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents DatedeRelâche17Juin2025ToolStripMenuItem1 As ToolStripMenuItem
 
 End Class

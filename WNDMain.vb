@@ -1,4 +1,5 @@
 ﻿Public Class WNDMain
+    ' Define variables
     Public WelcomeWormBoxes() As Integer = {23, 24, 25, 26, 36, 46}
     Public GameOverWormBoxes() As Integer = {13, 14, 15, 16, 26, 36}
     Public WormBoxes() As Boolean = {
@@ -24,7 +25,6 @@
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
     Public WormHistory As Integer() = {43, 44, 45}
-    Public Sound As Boolean = True
     Public Time As Integer = 0
     Public Points As Integer = 0
     Public Direction As String = “Right”
@@ -32,6 +32,8 @@
     Public Mode As String = "Hard"
     Public ActiveBox As Integer = 45
     Public ActiveOrange As Integer = 47
+    ' Define flags
+    Public Sound As Boolean = True
     Public FirstGame As Boolean = True
     Private Sub PBXSound_MouseHover(sender As Object, e As EventArgs) Handles PBXSound.MouseHover
         ' Check the Sound variable
@@ -927,6 +929,66 @@
         Time += 1
         ' Set time label to new time
         LBLTime.Text = CStr($"{Time \ 60:D2} : {Time Mod 60:D2}")
+        ' Check if time had passed 30 seconds
+        If Time = 30 Then
+            ' Stop timers
+            TMRGame.Enabled = False
+            TMRTime.Enabled = False
+            ' Change background image to the empty image
+            BackgroundImage = My.Resources.Empty
+            ' Hide boxes
+            For Box As Integer = 1 To WormBoxes.Length()
+                ' Hide the box
+                Me.Controls("Box" & CStr(Box)).Visible = False
+            Next
+            LBLLevel2.Visible = True
+            ' Reduce the game interval by 10 ms
+            TMRGame.Interval -= 30
+            ' Sleep for 2 seconds
+            Application.DoEvents()
+            Threading.Thread.Sleep(2000)
+            ' Hide unused controls
+            LBLLevel2.Visible = False
+            ' Change background image to the play image
+            BackgroundImage = My.Resources.Play
+            ' Hide boxes
+            For Box As Integer = 1 To WormBoxes.Length()
+                ' Hide the box
+                Me.Controls("Box" & CStr(Box)).Visible = True
+            Next
+            ' Start timers
+            TMRGame.Enabled = True
+            TMRTime.Enabled = True
+        ElseIf Time = 60 Then
+            ' Stop timers
+            TMRGame.Enabled = False
+            TMRTime.Enabled = False
+            ' Change background image to the empty image
+            BackgroundImage = My.Resources.Empty
+            ' Hide boxes
+            For Box As Integer = 1 To WormBoxes.Length()
+                ' Hide the box
+                Me.Controls("Box" & CStr(Box)).Visible = False
+            Next
+            LBLLevel3.Visible = True
+            ' Reduce the game interval by 10 ms
+            TMRGame.Interval -= 40
+            ' Sleep for 2 seconds
+            Application.DoEvents()
+            Threading.Thread.Sleep(2000)
+            ' Hide unused controls
+            LBLLevel3.Visible = False
+            ' Change background image to the play image
+            BackgroundImage = My.Resources.Play
+            ' Hide boxes
+            For Box As Integer = 1 To WormBoxes.Length()
+                ' Hide the box
+                Me.Controls("Box" & CStr(Box)).Visible = True
+            Next
+            ' Start timers
+            TMRGame.Enabled = True
+            TMRTime.Enabled = True
+        End If
     End Sub
     Private Sub QuitterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuitterToolStripMenuItem.Click
         ' Check sound status
@@ -987,6 +1049,8 @@
         BTNInstructions.Visible = False
         LBLInstructionsIntro.Visible = False
         LBLInstructions.Visible = False
+        LBLLevel2.Visible = False
+        LBLLevel3.Visible = False
         LBLSelectMode.Visible = False
         BTNEasy.Visible = False
         BTNHard.Visible = False
@@ -1120,6 +1184,8 @@
         BTNInstructions.Visible = False
         LBLInstructionsIntro.Visible = False
         LBLInstructions.Visible = False
+        LBLLevel2.Visible = False
+        LBLLevel3.Visible = False
         LBLSelectMode.Visible = False
         BTNEasy.Visible = False
         BTNHard.Visible = False
@@ -1228,6 +1294,8 @@
         BTNInstructions.Visible = False
         LBLInstructionsIntro.Visible = False
         LBLInstructions.Visible = False
+        LBLLevel2.Visible = False
+        LBLLevel3.Visible = False
         LBLSelectMode.Visible = False
         BTNEasy.Visible = False
         BTNHard.Visible = False
