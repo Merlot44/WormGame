@@ -1,4 +1,10 @@
-﻿Public Class WNDMain
+﻿' Worm Game
+' By Merlot44
+' Date: 2025/6/17
+' Version: 1.0.0
+' Github Repository : www.github.com/Merlot44/WormGame/
+
+Public Class WNDMain
     ' Define variables
     Public WelcomeWormBoxes() As Integer = {23, 24, 25, 26, 36, 46}
     Public GameOverWormBoxes() As Integer = {13, 14, 15, 16, 26, 36}
