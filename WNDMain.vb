@@ -133,6 +133,7 @@
         Time = 0
         Points = 0
         Direction = "Right"
+        TMRGame.Interval = 225
         ' Iterate through every box number in the WelcomeWormBoxes array
         For Box As Integer = 0 To (WelcomeWormBoxes.Length() - 1)
             ' Hide the box
@@ -903,6 +904,7 @@
         FirstGame = True
         LBLPoints.Text = ": 0"
         LBLTime.Text = "00 : 00"
+        TMRGame.Interval = 225
         ' Show new controls
         BackgroundImage = My.Resources.Empty
         LBLWelcome.Visible = True
@@ -1043,6 +1045,7 @@
         FirstGame = True
         LBLPoints.Text = ": 0"
         LBLTime.Text = "00 : 00"
+        TMRGame.Interval = 225
         ' Hide unused controls
         LBLWelcome.Visible = False
         BTNStart.Visible = False
@@ -1178,6 +1181,7 @@
         FirstGame = True
         LBLPoints.Text = ": 0"
         LBLTime.Text = "00 : 00"
+        TMRGame.Interval = 225
         ' Hide unused controls
         LBLWelcome.Visible = False
         BTNStart.Visible = False
@@ -1288,6 +1292,7 @@
         FirstGame = True
         LBLPoints.Text = ": 0"
         LBLTime.Text = "00 : 00"
+        TMRGame.Interval = 225
         ' Hide unused controls
         LBLWelcome.Visible = False
         BTNStart.Visible = False
