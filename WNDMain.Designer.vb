@@ -1600,14 +1600,14 @@ Partial Class WNDMain
         ' InstructionsToolStripMenuItem
         ' 
         InstructionsToolStripMenuItem.Name = "InstructionsToolStripMenuItem"
-        InstructionsToolStripMenuItem.Size = New Size(180, 22)
+        InstructionsToolStripMenuItem.Size = New Size(136, 22)
         InstructionsToolStripMenuItem.Text = "Instructions"
         ' 
         ' DétailsToolStripMenuItem
         ' 
         DétailsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {CréateurMerlot44ToolStripMenuItem1, Version100ToolStripMenuItem1, DatedeRelâche17Juin2025ToolStripMenuItem1})
         DétailsToolStripMenuItem.Name = "DétailsToolStripMenuItem"
-        DétailsToolStripMenuItem.Size = New Size(180, 22)
+        DétailsToolStripMenuItem.Size = New Size(136, 22)
         DétailsToolStripMenuItem.Text = "Détails"
         ' 
         ' CréateurMerlot44ToolStripMenuItem1
@@ -1637,7 +1637,7 @@ Partial Class WNDMain
         ' 
         ' TMRGame
         ' 
-        TMRGame.Interval = 270
+        TMRGame.Interval = 225
         ' 
         ' LBLGameOver
         ' 

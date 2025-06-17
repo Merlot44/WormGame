@@ -581,7 +581,7 @@
             End If
         ElseIf Direction = "Down" And Not (OldDirection = "Up") Then
             ' Check if the box is inside the play area
-            If (ActiveBox + 10) < WormBoxes.Length Then
+            If (ActiveBox + 10) <= WormBoxes.Length Then
                 ' Check if the box is used by the worm
                 If WormBoxes((ActiveBox + 10) - 1) = False Or ((ActiveBox + 10) - 1) = WormHistory(0) Then
                     ' Change the status of the new box
